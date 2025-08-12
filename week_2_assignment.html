@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced HTML5 Content & Forms</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #764ba2;
+            border-left: 4px solid #764ba2;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #f8f9ff, #e8eeff);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Lists Styling */
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tech-category {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+
+        tr:hover {
+            background-color: #e8eeff;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Media Styling */
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .media-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .media-item img, .media-item video, .media-item audio {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background: linear-gradient(145deg, #ffffff, #f0f2ff);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        fieldset {
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background: rgba(255,255,255,0.5);
+        }
+
+        legend {
+            font-weight: bold;
+            color: #667eea;
+            padding: 0 15px;
+            font-size: 1.1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        input:valid {
+            border-color: #28a745;
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input, .radio-item input {
+            width: auto;
+            margin: 0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .readonly-field {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Advanced Web Development Hub</h1>
+            <p>Showcasing HTML5 Content Elements & Interactive Forms</p>
+        </header>
+
+        <!-- Lists Section -->
+        <section class="section">
+            <h2>📝 Development Resources</h2>
+            
+            <h3>Essential Learning Path</h3>
+            <ol>
+                <li><strong>HTML5 Fundamentals</strong> - Semantic markup and document structure</li>
+                <li><strong>CSS3 Advanced Techniques</strong> - Flexbox, Grid, and responsive design</li>
+                <li><strong>JavaScript ES6+</strong> - Modern syntax and asynchronous programming</li>
+                <li><strong>Frontend Frameworks</strong> - React, Vue, or Angular development</li>
+                <li><strong>Backend Integration</strong> - API consumption and data handling</li>
+            </ol>
+
+            <h3>Technology Stack Categories</h3>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h4>Frontend Technologies</h4>
+                    <ul>
+                        <li>HTML5 & Semantic Web</li>
+                        <li>CSS3 & Preprocessors</li>
+                        <li>JavaScript & TypeScript</li>
+                        <li>React & Vue.js</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Backend Technologies</h4>
+                    <ul>
+                        <li>Node.js & Express</li>
+                        <li>Python & Django</li>
+                        <li>PHP & Laravel</li>
+                        <li>Database Management</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h4>Development Tools</h4>
+                    <ul>
+                        <li>Git & Version Control</li>
+                        <li>VS Code & Extensions</li>
+                        <li>Browser DevTools</li>
+                        <li>Package Managers</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="section">
+            <h2>📊 Project Timeline & Milestones</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Task</th>
+                        <th>Duration</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Planning</td>
+                        <td>Requirements Analysis</td>
+                        <td>1 week</td>
+                        <td>High</td>
+                        <td>✅ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Design</td>
+                        <td>UI/UX Wireframing</td>
+                        <td>2 weeks</td>
+                        <td>High</td>
+                        <td>🔄 In Progress</td>
+                    </tr>
+                    <tr>
+                        <td>Development</td>
+                        <td>Frontend Implementation</td>
+                        <td>3 weeks</td>
+                        <td>Critical</td>
+                        <td>⏳ Pending</td>
+                    </tr>
+                    <tr>
+                        <td>Development</td>
+                        <td>Backend API Development</td>
+                        <td>2 weeks</td>
+                        <td>Critical</td>
+                        <td>⏳ Pending</td>
+                    </tr>
+                    <tr>
+                        <td>Testing</td>
+                        <td>Quality Assurance</td>
+                        <td>1 week</td>
+                        <td>Medium</td>
+                        <td>📋 Planned</td>
+                    </tr>
+                    <tr>
+                        <td>Deployment</td>
+                        <td>Production Release</td>
+                        <td>3 days</td>
+                        <td>High</td>
+                        <td>📋 Planned</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Media Section -->
+        <section class="section">
+            <h2>🎨 Media Showcase</h2>
+            <div class="media-container">
+                <div class="media-item">
+                    <h3>Project Inspiration</h3>
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=250&fit=crop" 
+                         alt="Modern workspace with laptop and design tools"
+                         loading="lazy">
+                    <p>Creative workspace inspiration for modern web development</p>
+                </div>
+                
+                <div class="media-item">
+                    <h3>Development Process</h3>
+                    <video width="400" height="250" controls poster="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>Behind-the-scenes development workflow demonstration</p>
+                </div>
+                
+                <div class="media-item">
+                    <h3>Coding Soundtrack</h3>
+                    <audio controls>
+                        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+                        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p>Ambient sounds for enhanced coding focus</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced HTML5 Form Section -->
+        <section class="section">
+            <h2>📋 Professional Registration Form</h2>
+            <div class="form-container">
+                <form action="#" method="post" novalidate>
+                    
+                    <!-- Personal Information -->
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        <div class="form-row">
+                            <div>
+                                <label for="firstName">First Name *</label>
+                                <input type="text" 
+                                       id="firstName" 
+                                       name="firstName" 
+                                       required 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       pattern="[A-Za-z\s]+"
+                                       placeholder="Enter your first name"
+                                       autocomplete="given-name"
+                                       title="Please enter only letters and spaces">
+                            </div>
+                            <div>
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" 
+                                       id="lastName" 
+                                       name="lastName" 
+                                       required 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       pattern="[A-Za-z\s]+"
+                                       placeholder="Enter your last name"
+                                       autocomplete="family-name"
+                                       title="Please enter only letters and spaces">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div>
+                                <label for="email">Email Address *</label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       placeholder="your.email@example.com"
+                                       autocomplete="email"
+                                       title="Please enter a valid email address">
+                            </div>
+                            <div>
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" 
+                                       id="phone" 
+                                       name="phone" 
+                                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                       placeholder="123-456-7890"
+                                       autocomplete="tel"
+                                       title="Format: 123-456-7890">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div>
+                                <label for="birthDate">Date of Birth</label>
+                                <input type="date" 
+                                       id="birthDate" 
+                                       name="birthDate" 
+                                       min="1900-01-01" 
+                                       max="2010-12-31"
+                                       autocomplete="bday">
+                            </div>
+                            <div>
+                                <label for="website">Personal Website</label>
+                                <input type="url" 
+                                       id="website" 
+                                       name="website" 
+                                       placeholder="https://yourwebsite.com"
+                                       autocomplete="url"
+                                       title="Please enter a valid URL starting with http:// or https://">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Professional Details -->
+                    <fieldset>
+                        <legend>Professional Details</legend>
+                        
+                        <label for="jobTitle">Current Job Title *</label>
+                        <input type="text" 
+                               id="jobTitle" 
+                               name="jobTitle" 
+                               required 
+                               placeholder="e.g., Frontend Developer"
+                               autocomplete="organization-title"
+                               list="jobTitles">
+                        <datalist id="jobTitles">
+                            <option value="Frontend Developer">
+                            <option value="Backend Developer">
+                            <option value="Full Stack Developer">
+                            <option value="UI/UX Designer">
+                            <option value="DevOps Engineer">
+                            <option value="Data Scientist">
+                        </datalist>
+                        
+                        <div class="form-row">
+                            <div>
+                                <label for="experience">Years of Experience *</label>
+                                <input type="number" 
+                                       id="experience" 
+                                       name="experience" 
+                                       required 
+                                       min="0" 
+                                       max="50" 
+                                       step="0.5"
+                                       placeholder="e.g., 3.5">
+                            </div>
+                            <div>
+                                <label for="salary">Expected Salary Range</label>
+                                <input type="range" 
+                                       id="salary" 
+                                       name="salary" 
+                                       min="30000" 
+                                       max="200000" 
+                                       step="5000" 
+                                       value="75000"
+                                       oninput="this.nextElementSibling.value = '$' + this.value.toLocaleString()">
+                                <output>$75,000</output>
+                            </div>
+                        </div>
+                        
+                        <label for="company">Current Company</label>
+                        <input type="text" 
+                               id="company" 
+                               name="company" 
+                               placeholder="Company Name"
+                               autocomplete="organization">
+                        
+                        <label for="portfolio">Portfolio URL</label>
+                        <input type="url" 
+                               id="portfolio" 
+                               name="portfolio" 
+                               placeholder="https://github.com/username or portfolio link">
+                    </fieldset>
+
+                    <!-- Skills and Preferences -->
+                    <fieldset>
+                        <legend>Skills & Preferences</legend>
+                        
+                        <label for="primarySkill">Primary Technology Stack *</label>
+                        <select id="primarySkill" name="primarySkill" required>
+                            <option value="">Select your primary stack</option>
+                            <option value="frontend">Frontend (HTML/CSS/JavaScript)</option>
+                            <option value="react">React Ecosystem</option>
+                            <option value="vue">Vue.js Ecosystem</option>
+                            <option value="angular">Angular Framework</option>
+                            <option value="nodejs">Node.js/Backend</option>
+                            <option value="python">Python Development</option>
+                            <option value="php">PHP Development</option>
+                            <option value="mobile">Mobile Development</option>
+                            <option value="devops">DevOps/Cloud</option>
+                            <option value="data">Data Science/ML</option>
+                        </select>
+                        
+                        <label>Secondary Skills (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="html5" name="skills" value="html5">
+                                <label for="html5">HTML5</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="css3" name="skills" value="css3">
+                                <label for="css3">CSS3</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="javascript" name="skills" value="javascript">
+                                <label for="javascript">JavaScript</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="typescript" name="skills" value="typescript">
+                                <label for="typescript">TypeScript</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="react" name="skills" value="react">
+                                <label for="react">React</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nodejs" name="skills" value="nodejs">
+                                <label for="nodejs">Node.js</label>
+                            </div>
+                        </div>
+                        
+                        <label>Preferred Work Environment</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="remote" name="workStyle" value="remote">
+                                <label for="remote">Fully Remote</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="hybrid" name="workStyle" value="hybrid" checked>
+                                <label for="hybrid">Hybrid</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="onsite" name="workStyle" value="onsite">
+                                <label for="onsite">On-site</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Additional Information -->
+                    <fieldset>
+                        <legend>Additional Information</legend>
+                        
+                        <label for="timezone">Time Zone</label>
+                        <input type="text" 
+                               id="timezone" 
+                               name="timezone" 
+                               value="UTC+03:00 (Africa/Nairobi)" 
+                               class="readonly-field"
+                               readonly
+                               title="Auto-detected based on your location">
+                        
+                        <label for="availability">Availability Start Date</label>
+                        <input type="date" 
+                               id="availability" 
+                               name="availability" 
+                               min="2025-08-06">
+                        
+                        <label for="coverLetter">Cover Letter / Additional Notes</label>
+                        <textarea id="coverLetter" 
+                                  name="coverLetter" 
+                                  rows="6" 
+                                  maxlength="1000"
+                                  placeholder="Tell us about yourself, your passion for development, and what makes you unique... (Max 1000 characters)"
+                                  title="Share your story and what drives your passion for development"></textarea>
+                        
+                        <label for="resume">Upload Resume</label>
+                        <input type="file" 
+                               id="resume" 
+                               name="resume" 
+                               accept=".pdf,.doc,.docx"
+                               title="Accepted formats: PDF, DOC, DOCX">
+                        
+                        <div style="margin-top: 20px;">
+                            <div class="checkbox-item">
+                                <input type="checkbox" 
+                                       id="newsletter" 
+                                       name="newsletter" 
+                                       value="yes" 
+                                       checked>
+                                <label for="newsletter">Subscribe to developer newsletter and job updates</label>
+                            </div>
+                            
+                            <div class="checkbox-item">
+                                <input type="checkbox" 
+                                       id="terms" 
+                                       name="terms" 
+                                       value="agreed" 
+                                       required>
+                                <label for="terms">I agree to the Terms of Service and Privacy Policy *</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="submit-btn">🚀 Submit Application</button>
+                </form>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+            <p><em>Built with HTML5, CSS3, and modern web standards • No JavaScript validation required</em></p>
+        </footer>
+    </div>
+</body>
+</html>
